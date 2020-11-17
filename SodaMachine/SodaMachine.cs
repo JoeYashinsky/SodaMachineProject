@@ -28,11 +28,25 @@ namespace SodaMachine
         {
             for (int i = 0; i < 20; i++)
             {
-
-
                 Quarter quarter = new Quarter();
                 _register.Add(quarter);
             }
+            for (int i = 0; i < 10; i++)
+            {
+                Dime dime = new Dime();
+                _register.Add(dime);
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                Nickel nickel = new Nickel();
+                _register.Add(nickel);
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                Penny penny = new Penny();
+                _register.Add(penny);
+            }
+
 
         }
         //A method to fill the soda machine's inventory with soda can objects.

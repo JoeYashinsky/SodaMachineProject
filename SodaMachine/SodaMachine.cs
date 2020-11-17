@@ -23,12 +23,19 @@ namespace SodaMachine
 
         //Member Methods (Can Do)
 
-        //A method to fill the sodamachines register with coin objects.
+        //A method to fill the soda machine's register with coin objects.
         public void FillRegister()
         {
-           
+            for (int i = 0; i < 20; i++)
+            {
+
+
+                Quarter quarter = new Quarter();
+                _register.Add(quarter);
+            }
+
         }
-        //A method to fill the sodamachines inventory with soda can objects.
+        //A method to fill the soda machine's inventory with soda can objects.
         public void FillInventory()
         {
             

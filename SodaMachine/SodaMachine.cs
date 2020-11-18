@@ -108,11 +108,11 @@ namespace SodaMachine
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
-        //Returns the list of coins as change to despense.
+        //Returns the list of coins as change to dispense.
         //If the change cannot be made, return null.
         private List<Coin> GatherChange(double changeValue)
         {
-            List<Coin> changeCoins = null;
+            List<Coin> changeCoins = new List<Coin>();
             while (changeValue > 0)
             {
                 if (changeValue > 0.25)
@@ -139,7 +139,10 @@ namespace SodaMachine
                     changeCoins.Add(penny);
                     changeValue -= .01;
                 }
+
+                return changeCoins;
             }
+            
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.
@@ -156,7 +159,7 @@ namespace SodaMachine
         //Takes in the total payment amount and the price of can to return the change amount.
         private double DetermineChange(double totalPayment, double canPrice)
         {
-            
+            return (totalPayment - canPrice);
         }
         //Takes in a list of coins to returnt he total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
@@ -166,6 +169,10 @@ namespace SodaMachine
         //Puts a list of coins into the soda machines register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
         {
+            foreach(Coin coin in coins)
+            {
+                _register.Add(coin);
+            }
            
         }
     }

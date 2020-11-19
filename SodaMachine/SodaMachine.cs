@@ -126,19 +126,30 @@ namespace SodaMachine
         //If the payment does not meet the cost of the soda: dispense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-            if (//payment is greater than price of soda, if sodamachine has enough change, dispense soda and change to cust)
+            double totalCoins = TotalCoinValue(payment);               //double TotalCoinValue(List<Coin> payment)  (shows total value of coins taken in)
+
+
+
+            if (totalCoins > chosenSoda.Price)                                       //payment is greater than price of soda, if sodamachine has enough change, dispense soda and change to cust)
             {
+                DepositCoinsIntoRegister(payment);
+                DetermineChange(                                                                  
+                customer.AddCanToBackpack(chosenSoda);
+                _inventory.Remove(chosenSoda);
 
             }
-            else if (//payment is greater than cost of soda, but machine does not have enough change, give payment back to cust)
+            else if                                                                  //payment is greater than cost of soda, but machine does not have enough change, give payment back to cust)
             {
                    
             }
-            else if (//payment is exactly the cost of the item, then dispense soda to customer)
-            {
+            else if (totalCoins == chosenSoda.Price)                                 //payment is exactly the cost of the item, then dispense soda to customer)
+            {                                                                        //method AddCanToBackpack(Can purchasedCan)  (adds can to customer's backpack)
+                DepositCoinsIntoRegister(payment);                                   //DepositCoinsIntoRegister(List<Coin> coins)
+                customer.AddCanToBackpack(chosenSoda);
+                _inventory.Remove(chosenSoda); 
 
             }
-            else if (//payment does not meet total cost of soda, give coins back to the customer)
+            else if                    //payment does not meet total cost of soda, give coins back to the customer)
 
             
 
@@ -212,13 +223,17 @@ namespace SodaMachine
             {
                 if (coin.Name == name)
                 {
+                    _register.Remove(coin);          //also must remove a coin now from the register (_register)
                     return coin;
-                    _register.Remove(coin);                       //also must remove a coin now from the register (_register)
-
+                                      
 
                 }
+                else
+                {
+                    Console.WriteLine("No coin can be found by that name");
+                }
             }
-
+            return null;
         }
 
        

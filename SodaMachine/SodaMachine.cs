@@ -85,15 +85,33 @@ namespace SodaMachine
         //grab the desired soda from the inventory.
         //get payment from the user.
         //pass payment to the calculate transaction method to finish up the transaction based on the results.
-        private void Transaction(Customer customer)    //are we able to use the UserInterface methods when appropriate? There is relevant methods in that Class that can provide logic here.
+        private void Transaction(Customer customer)   //would a tuple be appropriate in this instance since we  
+                                                     //are we able to use the UserInterface methods when appropriate? There is relevant methods in that Class that can provide logic here.
         {
-            string desiredSoda = UserInterface.SodaSelection(_inventory);
-            Can 
-           
+            string desiredSoda = UserInterface.SodaSelection(_inventory);   //prompted for desired soda
+            Can canProduct = GetSodaFromInventory(desiredSoda);       //(from below)  CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
+
+
         }
         //Gets a soda from the inventory based on the name of the soda.
-        private Can GetSodaFromInventory(string nameOfSoda)
+        private Can GetSodaFromInventory(string nameOfSoda)   //this can be a foreach loop. If the name of the soda matches the soda selected, remove a soda from the inventory.
         {
+            foreach (Can can in _inventory)
+            {
+                if(can.Name == nameOfSoda)
+                {
+                    _inventory.Remove(can);
+
+                    return can;
+
+                }
+                else
+                {
+                    return null;
+                }
+
+                                                        
+            }
           
         }
 
@@ -106,7 +124,22 @@ namespace SodaMachine
         //If the payment does not meet the cost of the soda: dispense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-           
+            if (//payment is greater than price of soda, if sodamachine has enough change, dispense soda and change to cust)
+            {
+
+            }
+            else if (//payment is greater than cost of soda, but machine does not have enough change, give payment back to cust)
+            {
+                   
+            }
+            else if (//payment is exactly the cost of the item, then dispense soda to customer)
+            {
+
+            }
+            else if (//payment does not meet total cost of soda, give coins back to the customer)
+
+            
+
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
@@ -141,9 +174,11 @@ namespace SodaMachine
                     changeCoins.Add(penny);
                     changeValue -= .01;
                 }
+                //////Do I need an "else" statement to end this loop and then the logic inside would just be "return null"?
 
                 return changeCoins;
             }
+
             
         }
         //Reusable method to check if the register has a coin of that name.

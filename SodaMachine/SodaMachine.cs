@@ -85,8 +85,10 @@ namespace SodaMachine
         //grab the desired soda from the inventory.
         //get payment from the user.
         //pass payment to the calculate transaction method to finish up the transaction based on the results.
-        private void Transaction(Customer customer)
+        private void Transaction(Customer customer)    //are we able to use the UserInterface methods when appropriate? There is relevant methods in that Class that can provide logic here.
         {
+            string desiredSoda = UserInterface.SodaSelection(_inventory);
+            Can 
            
         }
         //Gets a soda from the inventory based on the name of the soda.
@@ -176,13 +178,17 @@ namespace SodaMachine
 
            
         }
-        //Puts a list of coins into the soda machines register.
+        //Puts a list of coins into the soda machine's register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
         {
             foreach(Coin coin in coins)
             {
                 _register.Add(coin);
             }
+
+
+
+
            
         }
     }

@@ -107,11 +107,13 @@ namespace SodaMachine
                 }
                 else
                 {
-                    return null;
+                    Console.WriteLine("Soda not found. Try again.");
                 }
 
                                                         
             }
+            return null;
+
           
         }
 
@@ -188,19 +190,45 @@ namespace SodaMachine
         //If it does have one, return true.  Else, false.
         private bool RegisterHasCoin(string name)
         {
+ 
+
+            foreach(Coin coin in _register)
+            {
+                if (coin.Name == name)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+
            
         }
         //Reusable method to return a coin from the register.
         //Returns null if no coin can be found of that name.
-        private Coin GetCoinFromRegister(string name)
+        private Coin GetCoinFromRegister(string name)    //similar to above method
         {
-            
+            foreach(Coin coin in _register)
+            {
+                if (coin.Name == name)
+                {
+                    return coin;
+                    _register.Remove(coin);                       //also must remove a coin now from the register (_register)
+
+
+                }
+            }
+
         }
-        //Takes in the total payment amount and the price of can to return the change amount.
-        private double DetermineChange(double totalPayment, double canPrice)
+
+       
+
+
+//Takes in the total payment amount and the price of can to return the change amount.
+private double DetermineChange(double totalPayment, double canPrice)
         {
             double returnedChange;
-            returnedChange = totalPayment - canPrice;
+            returnedChange = (totalPayment - canPrice);
 
             return returnedChange;
         }

@@ -18,7 +18,7 @@ namespace SodaMachine
         }
         //Member Methods (Can Do)
         //Fills wallet with starting money
-        private void FillRegister()
+        private void FillRegister()   //Wallet will begin with $4 in quarters, $1 in dimes, $1 in nickels, $0.25 in pennies. Total = $6.25
         {
             for (int i = 0; i < 16; i++)
             {

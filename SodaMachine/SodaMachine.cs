@@ -174,12 +174,15 @@ namespace SodaMachine
                     changeCoins.Add(penny);
                     changeValue -= .01;
                 }
-                //////Do I need an "else" statement to end this loop and then the logic inside would just be "return null"?
+                else
+                {
+                    changeCoins = null;
+                }
 
-                return changeCoins;
             }
+            return changeCoins;
 
-            
+
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.

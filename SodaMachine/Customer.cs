@@ -40,16 +40,34 @@ namespace SodaMachine
                 if (coinSelection == "Quarter")
                 {
                     Coin quarter = GetCoinFromWallet("Quarter");
-                    amountGathered += Wallet.Quarter.
-                    coinsForSoda.Add(Quarter);
+                    coinsForSoda.Add(quarter);
+                    amountGathered += .25;
                 }
                 else if (coinSelection == "Dime")
                 {
                     Coin dime = GetCoinFromWallet("Dime");
-                    amountGathered += Wallet.Dime.
+                    coinsForSoda.Add(dime);
+                    amountGathered += .10;
+                }
+                else if (coinSelection == "Nickel")
+                {
+                    Coin nickel = GetCoinFromWallet("Nickel");
+                    coinsForSoda.Add(nickel);
+                    amountGathered += .05;
+                }
+                else if (coinSelection == "Penny")
+                {
+                    Coin penny = GetCoinFromWallet("Penny");
+                    coinsForSoda.Add(penny);
+                    amountGathered += .01;
+                }
+                else
+                {
+                    coinsForSoda = null;
                 }
 
             }
+            return coinsForSoda;
 
             // Coin quarter = GetCoinFromRegister("Quarter");
             //changeCoins.Add(quarter);

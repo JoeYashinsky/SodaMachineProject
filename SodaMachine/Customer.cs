@@ -87,10 +87,11 @@ namespace SodaMachine
                 }
                 else
                 {
-                    return null;
+                    Console.WriteLine("Coin not found. Try again."); 
                 }
 
             }
+            return null;
             
         }
         //Takes in a list of coin objects to add into the customers wallet.

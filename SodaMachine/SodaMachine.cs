@@ -130,26 +130,36 @@ namespace SodaMachine
 
 
 
-            if (totalCoins > chosenSoda.Price)                                       //payment is greater than price of soda, if sodamachine has enough change, dispense soda and change to cust)
+            if (totalCoins < chosenSoda.Price)                                  //payment does not meet total cost of soda, give coins back to the customer)
             {
-                DepositCoinsIntoRegister(payment);
-                DetermineChange(                                                                  
-                customer.AddCanToBackpack(chosenSoda);
-                _inventory.Remove(chosenSoda);
+                Console.WriteLine("Not enough change was passed in. Transaction not completed");
+                customer.AddCoinsIntoWallet(payment);
+            }
 
-            }
-            else if                                                                  //payment is greater than cost of soda, but machine does not have enough change, give payment back to cust)
-            {
-                   
-            }
             else if (totalCoins == chosenSoda.Price)                                 //payment is exactly the cost of the item, then dispense soda to customer)
             {                                                                        //method AddCanToBackpack(Can purchasedCan)  (adds can to customer's backpack)
                 DepositCoinsIntoRegister(payment);                                   //DepositCoinsIntoRegister(List<Coin> coins)
                 customer.AddCanToBackpack(chosenSoda);
-                _inventory.Remove(chosenSoda); 
+                _inventory.Remove(chosenSoda);
 
             }
-            else if                    //payment does not meet total cost of soda, give coins back to the customer)
+
+            else if (totalCoins > chosenSoda.Price && _inventory.Count > 0)
+            {                                                                                          //DetermineChange method: totalPayment - canPrice = returnedChange
+                DepositCoinsIntoRegister(payment);
+                double changeValue = DetermineChange(totalCoins, chosenSoda.Price);                      //  private List<Coin> GatherChange(double changeValue)
+                customer.AddCoinsIntoWallet(payment);
+                customer.AddCanToBackpack(chosenSoda);
+                _inventory.Remove(chosenSoda);
+            }
+            if(totalCoins > chosenSoda.Price && _inventory.Count == 0)    
+            {
+                Console.WriteLine("Soda not available. Cannot complete the transaction");
+                customer.AddCoinsIntoWallet(payment);
+            }
+            
+           
+            
 
             
 

@@ -85,34 +85,30 @@ namespace SodaMachine
         //grab the desired soda from the inventory.
         //get payment from the user.
         //pass payment to the calculate transaction method to finish up the transaction based on the results.
-        private void Transaction(Customer customer)   //would a tuple be appropriate in this instance since we  
-                                                     //are we able to use the UserInterface methods when appropriate? There is relevant methods in that Class that can provide logic here.
+        private void Transaction(Customer customer)   
+
         {
-            string desiredSoda = UserInterface.SodaSelection(_inventory);   //prompted for desired soda
-            Can canProduct = GetSodaFromInventory(desiredSoda);             //(from below)  CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
-            List<Coin> userPayment = customer.GatherCoinsFromWallet(canProduct);                                                         //get payment from user
-                                                                                                                                         //pass payment to the calculate transaction method to finish up the transaction based on the results.
+            string desiredSoda = UserInterface.SodaSelection(_inventory);               //prompted for desired soda
+            Can canProduct = GetSodaFromInventory(desiredSoda);                         //(from below)  CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
+            List<Coin> userPayment = customer.GatherCoinsFromWallet(canProduct);                                                         
+                                                                                                                                         
             CalculateTransaction(userPayment, canProduct, customer);
 
         }
 
-        //Takes in the inventory of sodas to provide the user with an interface for their selection.
-        //public static string SodaSelection(List<Can> SodaOptions)
 
 
 
 
         //Gets a soda from the inventory based on the name of the soda.
-        private Can GetSodaFromInventory(string nameOfSoda)   //this can be a foreach loop. If the name of the soda matches the soda selected, remove a soda from the inventory.
+        private Can GetSodaFromInventory(string nameOfSoda)   
         {
+           
             foreach (Can can in _inventory)
             {
                 if(can.Name == nameOfSoda)
                 {
-                    _inventory.Remove(can);
-
                     return can;
-
                 }
                 else
                 {
@@ -135,28 +131,27 @@ namespace SodaMachine
         //If the payment does not meet the cost of the soda: dispense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-            double totalCoins = TotalCoinValue(payment);               //double TotalCoinValue(List<Coin> payment)  (shows total value of coins taken in)
+            double totalCoins = TotalCoinValue(payment);             
 
 
 
-            if (totalCoins < chosenSoda.Price)                                  //payment does not meet total cost of soda, give coins back to the customer)
+            if (totalCoins < chosenSoda.Price)                                  
             {
                 Console.WriteLine("Not enough change was passed in. Transaction not completed");
                 customer.AddCoinsIntoWallet(payment);
             }
 
-            else if (totalCoins == chosenSoda.Price)                                 //payment is exactly the cost of the item, then dispense soda to customer)
-            {                                                                        //method AddCanToBackpack(Can purchasedCan)  (adds can to customer's backpack)
-                DepositCoinsIntoRegister(payment);                                   //DepositCoinsIntoRegister(List<Coin> coins)
+            else if (totalCoins == chosenSoda.Price)                                 
+            {                                                                        
+                DepositCoinsIntoRegister(payment);                                   
                 customer.AddCanToBackpack(chosenSoda);
                 _inventory.Remove(chosenSoda);
-
             }
 
             else if (totalCoins > chosenSoda.Price && _inventory.Count > 0)
-            {                                                                                          //DetermineChange method: totalPayment - canPrice = returnedChange
+            {                                                                                          
                 DepositCoinsIntoRegister(payment);
-                double changeValue = DetermineChange(totalCoins, chosenSoda.Price);                      //  private List<Coin> GatherChange(double changeValue)
+                double changeValue = DetermineChange(totalCoins, chosenSoda.Price);                     
                 customer.AddCoinsIntoWallet(payment);
                 customer.AddCanToBackpack(chosenSoda);
                 _inventory.Remove(chosenSoda);
@@ -166,10 +161,6 @@ namespace SodaMachine
                 Console.WriteLine("Soda not available. Cannot complete the transaction");
                 customer.AddCoinsIntoWallet(payment);
             }
-            
-           
-            
-
             
 
         }
@@ -236,13 +227,13 @@ namespace SodaMachine
         }
         //Reusable method to return a coin from the register.
         //Returns null if no coin can be found of that name.
-        private Coin GetCoinFromRegister(string name)    //similar to above method
+        private Coin GetCoinFromRegister(string name)         //similar to above method
         {
             foreach(Coin coin in _register)
             {
                 if (coin.Name == name)
                 {
-                    _register.Remove(coin);          //also must remove a coin now from the register (_register)
+                    _register.Remove(coin);       
                     return coin;
                                       
 

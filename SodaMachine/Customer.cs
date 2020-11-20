@@ -26,14 +26,13 @@ namespace SodaMachine
         //When all is said and done, this method will return a list of coin objects that the customer will use as payment for their soda.
         public List<Coin> GatherCoinsFromWallet(Can selectedCan)   //similar to GatherChange method from the SodaMachine class
         {
-            //possibly look at CoinSelection(Can selectedCan, List<Coin> paymnet) from UserInterface
 
             List<Coin> coinsForSoda = new List<Coin>();  
             double amountGathered = 0;
             string coinSelection = "";
             double trackedTransaction = selectedCan.Price - amountGathered;
 
-            //CoinSelection method in UserInterface will prompt the user to input a number for the chosen coin to use)
+            
             //while the amount of coins being gathered from wallet is still less than the total price of the can, continue to gather coins)
             while (amountGathered < selectedCan.Price)
             {
@@ -76,7 +75,7 @@ namespace SodaMachine
         }
         //Returns a coin object from the wallet based on the name passed into it.
         //Returns null if no coin can be found
-        public Coin GetCoinFromWallet(string coinName)   //same logic as GetSodaFromInventory. If coin object matches coin selected by customer, retrieve the Coin and remove assoc value from Wallet.
+        public Coin GetCoinFromWallet(string coinName)         
         {
             foreach (Coin coinObject in Wallet.Coins)
             {

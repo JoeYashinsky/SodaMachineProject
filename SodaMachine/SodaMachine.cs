@@ -89,10 +89,19 @@ namespace SodaMachine
                                                      //are we able to use the UserInterface methods when appropriate? There is relevant methods in that Class that can provide logic here.
         {
             string desiredSoda = UserInterface.SodaSelection(_inventory);   //prompted for desired soda
-            Can canProduct = GetSodaFromInventory(desiredSoda);       //(from below)  CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
-
+            Can canProduct = GetSodaFromInventory(desiredSoda);             //(from below)  CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
+            List<Coin> userPayment = customer.GatherCoinsFromWallet(canProduct);                                                         //get payment from user
+                                                                                                                                         //pass payment to the calculate transaction method to finish up the transaction based on the results.
+            CalculateTransaction(userPayment, canProduct, customer);
 
         }
+
+        //Takes in the inventory of sodas to provide the user with an interface for their selection.
+        //public static string SodaSelection(List<Can> SodaOptions)
+
+
+
+
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)   //this can be a foreach loop. If the name of the soda matches the soda selected, remove a soda from the inventory.
         {
